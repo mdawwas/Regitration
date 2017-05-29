@@ -10,14 +10,12 @@
   <head>
     <title>$Title$</title>
     <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="all_in.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
-      <img src="https://www.trendmd.com/assets/new_landing/customers/atypon-38a9c282d1fbb5a5268d91759d9ed6de.png" style="
-    display: table;
-    margin: 0 auto;
-    margin-top: 10%;">
+      <img src="https://www.trendmd.com/assets/new_landing/customers/atypon-38a9c282d1fbb5a5268d91759d9ed6de.png" class = "login-img">
       <div class="login-container">
         <div id="output"></div>
         <div class="avatar"></div>
