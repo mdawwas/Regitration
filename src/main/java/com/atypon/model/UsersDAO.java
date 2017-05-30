@@ -27,13 +27,14 @@ public class UsersDAO {
 
     public void addUser(User user) throws SQLException{
         String sqlQuery = "insert into users (username ,password , name , type ) values( ? , ? ,? ,?)";
-        Connection connection = null;
+        Connection connection = DataSource.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
         preparedStatement.setString(1, user.getUserName());
         preparedStatement.setString(2,user.getPassword());
         preparedStatement.setString(3,user.getName());
         preparedStatement.setInt(4,user.getType());
         preparedStatement.execute();
+        DataSource.getInstance().returnConnection(connection);
 
     }
 
@@ -54,6 +55,7 @@ public class UsersDAO {
                 int id = resultSet.getInt("id");
                 return new User(id,type,userName,password,name);
             }
+            DataSource.getInstance().returnConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -78,6 +80,7 @@ public class UsersDAO {
                 User user = new User(id,type,userName,password,name);
                 usersList.add(user);
             }
+            DataSource.getInstance().returnConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }

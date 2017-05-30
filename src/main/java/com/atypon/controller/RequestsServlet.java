@@ -39,7 +39,7 @@ public class RequestsServlet extends HttpServlet {
 
         }else if(action.equals("/users.page")){
             ArrayList<User> users = UsersDAO.getInstance().getUsers();
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession();
             session.setAttribute("users_list",users);
             RequestDispatcher rd = request.getRequestDispatcher("users.jsp");
             rd.forward(request,response);

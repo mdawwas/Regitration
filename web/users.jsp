@@ -22,12 +22,16 @@
 <body>
     <script>
         <%
-            User user = (User) session.getAttribute("user");
-            if(user == null){
-                response.sendRedirect("index.jsp");
-            }else if( user.getType() != 0){
-                out.println("javascript:alert(\"You cant access this page\")");
-                out.println("javascript:window.location.replace(\"/HomePage.jsp\")");
+            if(session.isNew()){
+                out.println("window.location.replace(\"/HomePage.jsp\");");
+            }else{
+                User user = (User) session.getAttribute("user");
+                if(user == null){
+                    response.sendRedirect("index.jsp");
+                }else if( user.getType() != 0){
+                    out.println("alert(\"You cant access this page\");");
+                    out.println("window.location.replace(\"/HomePage.jsp\");");
+                }
             }
         %>
     </script>
