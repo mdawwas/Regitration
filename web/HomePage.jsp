@@ -13,14 +13,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="all_in.css">
-    <style>
-        body{background-color: whitesmoke ;}
-        html,body{
-            position: relative;
-            height: 100%;
-        }
-
-    </style>
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -30,7 +22,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Users</a></li>
+                <li><a href="users.jsp">Users</a></li>
                 <li><a href="#">Courses</a></li>
                 <li><a href="#">Sections</a></li>
             </ul>
