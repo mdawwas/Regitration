@@ -27,7 +27,7 @@ public class RequestsServlet extends HttpServlet {
         String action = request.getServletPath();
         if(action.equals("/login.do")){
             User user = UsersDAO.getInstance().doLogin(request.getParameter("username"),request.getParameter("password"));
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession();
             if(user!=null){
                 session.setAttribute("user",user);
                 RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");

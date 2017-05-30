@@ -22,11 +22,10 @@
             </div>
             <ul class="nav navbar-nav">
                 <%
-                    if(session.isNew())
+                    User user = (User) session.getAttribute("user");
+                    if(session.isNew() || user == null)
                         response.sendRedirect("index.jsp");
                     else {
-                        User user = (User) session.getAttribute("user");
-                        System.out.println(user);
                         out.println("<li  class=\"active\" ><a href = \"HomePage.jsp\" > Home </a ></li> ");
                         if (user.getType() == 0) {
                             out.println("<li><a href = \"/users.page\" > Users </a ></li >");

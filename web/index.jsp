@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
-    <%
-      if(request.getAttribute("error")!=null){
-          out.println(request.getAttribute("error"));
-      }
-    %>
+    <script>
+      <%
+        if(request.getAttribute("error")!=null){
+            out.println("alert(\"Wrong username or password\");");
+        }
+      %>
+    </script>
     <div class="container">
       <img src="https://www.trendmd.com/assets/new_landing/customers/atypon-38a9c282d1fbb5a5268d91759d9ed6de.png" class = "login-img">
       <div class="login-container">

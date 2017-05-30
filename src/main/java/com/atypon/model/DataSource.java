@@ -42,23 +42,16 @@ public class DataSource {
     }
 
     public Connection getConnection(){
-        if(connections.isEmpty()){
-            synchronized (this){
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        while (connections.isEmpty()) {
+            System.out.println("waiting for a connection");
+            continue;
+
         }
         return connections.remove(connections.size()-1);
     }
 
     public void returnConnection(Connection connection){
         connections.add(connection);
-        synchronized (this){
-            notify();
-        }
     }
 
 }
