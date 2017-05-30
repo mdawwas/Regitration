@@ -6,17 +6,15 @@
 
 
     <servlet>
-        <servlet-name>loginServlet</servlet-name>
-        <servlet-class>com.atypon.controller.LoginServlet</servlet-class>
-
-        <init-param>
-            <param-name>e-mail</param-name>
-            <param-value>mdawwas@atypon.com</param-value>
-        </init-param>
+        <servlet-name>requestsServlet</servlet-name>
+        <servlet-class>com.atypon.controller.RequestsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>loginServlet</servlet-name>
+        <servlet-name>requestsServlet</servlet-name>
+        <url-pattern>/users.page</url-pattern>
         <url-pattern>/login.do</url-pattern>
     </servlet-mapping>
-
+    <session-config>
+        <session-timeout>1</session-timeout> <!-- in minutes -->
+    </session-config>
 </web-app>

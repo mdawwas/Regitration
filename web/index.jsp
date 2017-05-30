@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.atypon.utility.User" %><%--
   Created by IntelliJ IDEA.
   User: mdawwas
   Date: 5/24/17
@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
+    <%
+      if(request.getAttribute("error")!=null){
+          out.println(request.getAttribute("error"));
+      }
+    %>
     <div class="container">
       <img src="https://www.trendmd.com/assets/new_landing/customers/atypon-38a9c282d1fbb5a5268d91759d9ed6de.png" class = "login-img">
       <div class="login-container">
@@ -21,8 +26,8 @@
         <div class="avatar"></div>
         <div class="form-box">
           <form action="/login.do" method="post">
-            <input name="user" type="text" placeholder="username">
-            <input name ="pswd" type="password" placeholder="password">
+            <input name="username" type="text" placeholder="username">
+            <input name ="password" type="password" placeholder="password">
             <button class="btn btn-info btn-block login" type="submit">Login</button>
           </form>
         </div>

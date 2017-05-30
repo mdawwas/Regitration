@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.atypon.utility.User" %><%--
   Created by IntelliJ IDEA.
   User: mdawwas
   Date: 5/29/17
@@ -21,10 +21,16 @@
                 <a class="navbar-brand" href="/HomePage.jsp">Atypon Registeration</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="users.jsp">Users</a></li>
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">Sections</a></li>
+                <%
+                    User user = (User) session.getAttribute("user");
+                    System.out.println(user);
+                    out.println("<li  class=\"active\" ><a href = \"HomePage.jsp\" > Home </a ></li> ");
+                    if(user.getType() == 0) {
+                        out.println("<li><a href = \"/users.page\" > Users </a ></li >");
+                        out.println("<li ><a href = \"#\" > Courses </a ></li >");
+                        out.println("<li ><a href = \"#\" > Sections </a ></li >");
+                    }
+                %>
             </ul>
         </div>
     </nav>

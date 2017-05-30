@@ -13,6 +13,18 @@ import java.util.ArrayList;
  */
 public class UsersDAO {
 
+    private static UsersDAO instance;
+
+    private UsersDAO(){
+
+    }
+
+    public static UsersDAO getInstance(){
+        if(instance == null)
+            instance = new UsersDAO();
+        return instance;
+    }
+
     public void addUser(User user) throws SQLException{
         String sqlQuery = "insert into users (username ,password , name , type ) values( ? , ? ,? ,?)";
         Connection connection = null;
@@ -25,35 +37,49 @@ public class UsersDAO {
 
     }
 
-    public User getUser(String userName) throws SQLException{
-        String sqlQuery = "Select * from Users where username = ?";
+    public User doLogin(String userName , String password){
+        String sqlQuery = "Select * from Users where username = ? and password =  ?";
         Connection connection = DataSource.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-        preparedStatement.setString(1,userName);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.next()) {
-            String password  = resultSet.getString("password");
-            String name = resultSet.getString("name");
-            int type = resultSet.getInt("type");
-            return new User(type,userName,password,name);
+
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setString(1,userName);
+            preparedStatement.setString(2,password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+
+                String name = resultSet.getString("name");
+                int type = resultSet.getInt("type");
+                int id = resultSet.getInt("id");
+                return new User(id,type,userName,password,name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
+
         return null;
     }
 
-    public ArrayList<User> getUsers() throws SQLException {
+    public ArrayList<User> getUsers() {
         ArrayList <User> usersList = new ArrayList<>();
-        String sqlQuery = "select * from users";
-        Connection connection = null;
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-        ResultSet  resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-            int id = resultSet.getInt("id");
-            int type = resultSet.getInt("type");
-            String userName = resultSet.getString("username");
-            String name = resultSet.getString("name");
-            String password = resultSet.getString("password");
-            User user = new User(id,type,userName,password,name);
-            usersList.add(user);
+        String sqlQuery = "select * from Users";
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            ResultSet  resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                int type = resultSet.getInt("type");
+                String userName = resultSet.getString("username");
+                String name = resultSet.getString("name");
+                String password = resultSet.getString("password");
+                User user = new User(id,type,userName,password,name);
+                usersList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return usersList;
     }

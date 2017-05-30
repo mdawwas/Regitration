@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.atypon.utility.User" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: mdawwas
   Date: 5/29/17
@@ -8,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Users</title>
     <script language="JavaScript" src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
@@ -19,7 +20,17 @@
     <link rel="stylesheet" href="all_in.css" type="text/css">
 </head>
 <body>
-
+    <script>
+        <%
+            User user = (User) session.getAttribute("user");
+            if(user == null){
+                response.sendRedirect("index.jsp");
+            }else if( user.getType() != 0){
+                out.println("javascript:alert(\"You cant access this page\")");
+                out.println("javascript:window.location.replace(\"/HomePage.jsp\")");
+            }
+        %>
+    </script>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -48,132 +59,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mohammad Abu Dawwas</td>
-                    <td>mdawwas</td>
-                    <td>111</td>
-                    <td>0</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Samer Raed</td>
-                    <td>sraed</td>
-                    <td>111</td>
-                    <td>2</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>mousa Abu Dawwas</td>
-                    <td>mousa_dawwas</td>
-                    <td>111</td>
-                    <td>1</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Ibrahim Q Al-Bzour</td>
-                    <td>ibzour</td>
-                    <td>111</td>
-                    <td>2</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Mohammad Abu Dawwas</td>
-                    <td>mdawwas</td>
-                    <td>111</td>
-                    <td>0</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Samer Raed</td>
-                    <td>sraed</td>
-                    <td>111</td>
-                    <td>2</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>mousa Abu Dawwas</td>
-                    <td>mousa_dawwas</td>
-                    <td>111</td>
-                    <td>1</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Ibrahim Q Al-Bzour</td>
-                    <td>ibzour</td>
-                    <td>111</td>
-                    <td>2</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr><tr>
-                    <td>1</td>
-                    <td>Mohammad Abu Dawwas</td>
-                    <td>mdawwas</td>
-                    <td>111</td>
-                    <td>0</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Samer Raed</td>
-                    <td>sraed</td>
-                    <td>111</td>
-                    <td>2</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>mousa Abu Dawwas</td>
-                    <td>mousa_dawwas</td>
-                    <td>111</td>
-                    <td>1</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Ibrahim Q Al-Bzour</td>
-                    <td>ibzour</td>
-                    <td>111</td>
-                    <td>2</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr><tr>
-                    <td>1</td>
-                    <td>Mohammad Abu Dawwas</td>
-                    <td>mdawwas</td>
-                    <td>111</td>
-                    <td>0</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Samer Raed</td>
-                    <td>sraed</td>
-                    <td>111</td>
-                    <td>2</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>mousa Abu Dawwas</td>
-                    <td>mousa_dawwas</td>
-                    <td>111</td>
-                    <td>1</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Ibrahim Q Al-Bzour</td>
-                    <td>ibzour</td>
-                    <td>111</td>
-                    <td>2</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
+                 <%
+                     ArrayList <User> users  = (ArrayList<User>) session.getAttribute("users_list");
+                     for(int i = 0 ; users!= null && i < users.size() ; ++i){
+                         out.println("<tr>");
+                         out.println("<td>"+users.get(i).getId()+"</td>");
+                         out.println("<td>"+users.get(i).getName()+"</td>");
+                         out.println("<td>"+users.get(i).getUserName()+"</td>");
+                         out.println("<td>"+users.get(i).getPassword()+"</td>");
+                         out.println("<td>"+users.get(i).getType()+"</td>");
+                         out.println("<td><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span class=\"glyphicon glyphicon-trash\"></span></button></p></td>");
+                         out.println("</tr>");
+                     }
+                 %>
             </tbody>
         </table>
     </div>
