@@ -29,7 +29,7 @@
                         out.println("<li  class=\"active\" ><a href = \"HomePage.jsp\" > Home </a ></li> ");
                         if (user.getType() == 0) {
                             out.println("<li><a href = \"/users.page\" > Users </a ></li >");
-                            out.println("<li ><a href = \"#\" > Courses </a ></li >");
+                            out.println("<li ><a href = \"/courses.page\" > Courses </a ></li >");
                             out.println("<li ><a href = \"#\" > Sections </a ></li >");
                         }
                     }

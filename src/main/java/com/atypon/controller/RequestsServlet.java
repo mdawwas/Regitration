@@ -1,6 +1,8 @@
 package com.atypon.controller;
 
+import com.atypon.model.CoursesDAO;
 import com.atypon.model.UsersDAO;
+import com.atypon.utility.Course;
 import com.atypon.utility.User;
 
 import javax.servlet.RequestDispatcher;
@@ -42,6 +44,12 @@ public class RequestsServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("users_list",users);
             RequestDispatcher rd = request.getRequestDispatcher("users.jsp");
+            rd.forward(request,response);
+        }else if(action.equals("/courses.page")){
+            ArrayList<Course> courses = CoursesDAO.getInstance().getCourses();
+            HttpSession session = request.getSession();
+            session.setAttribute("courses_list",courses);
+            RequestDispatcher rd = request.getRequestDispatcher("courses.jsp");
             rd.forward(request,response);
         }
     }

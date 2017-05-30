@@ -13,6 +13,16 @@ import java.util.ArrayList;
  */
 public class CoursesDAO {
 
+    private static CoursesDAO instance;
+
+    private CoursesDAO(){}
+
+    public static CoursesDAO getInstance(){
+        if(instance == null)
+            instance = new CoursesDAO();
+        return instance;
+    }
+
     public void addCourse(String courseName , String courseDescription) throws SQLException {
         String sqlQuery = "insert into courses (course_Name , courseDescription) VALUES (?,?)";
         Connection connection = DataSource.getInstance().getConnection();
@@ -30,17 +40,22 @@ public class CoursesDAO {
         preparedStatement.execute();
     }
 
-    public ArrayList<Course> getCourses() throws SQLException {
+    public ArrayList<Course> getCourses() {
         ArrayList<Course> courses = new ArrayList<>();
         String sqlQuery = "select * from courses";
-        Connection connection = null;
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-            int id = resultSet.getInt("id");
-            String courseName = resultSet.getString("course_Name");
-            String courseDescription = resultSet.getString("course_description");
-            courses.add(new Course(id,courseName,courseDescription));
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String courseName = resultSet.getString("course_Name");
+                String courseDescription = resultSet.getString("course_description");
+                courses.add(new Course(id, courseName, courseDescription));
+            }
+            DataSource.getInstance().returnConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return courses;
     }

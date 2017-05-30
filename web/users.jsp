@@ -42,8 +42,8 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="HomePage.jsp">Home</a></li>
-                <li class="active"><a href="users.jsp">Users</a></li>
-                <li><a href="#">Courses</a></li>
+                <li class="active"><a href="/users.page">Users</a></li>
+                <li><a href="/courses.page">Courses</a></li>
                 <li><a href="#">Sections</a></li>
             </ul>
         </div>

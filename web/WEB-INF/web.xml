@@ -13,6 +13,7 @@
         <servlet-name>requestsServlet</servlet-name>
         <url-pattern>/users.page</url-pattern>
         <url-pattern>/login.do</url-pattern>
+        <url-pattern>/courses.page</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>1</session-timeout> <!-- in minutes -->
