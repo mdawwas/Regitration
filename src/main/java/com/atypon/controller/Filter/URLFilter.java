@@ -47,7 +47,6 @@ public class URLFilter implements Filter {
             file.println("at : " + time + " user " + name + " did action : " + action);
             file.flush();
         }
-        System.out.println("at : " + time + " user " + name + " did action : " + action + "\n");
         if(user == null && !action.equals("/login.do")) {
             response.sendRedirect("/index.jsp");
         } else if(user == null){
