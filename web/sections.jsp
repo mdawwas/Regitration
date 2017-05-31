@@ -51,7 +51,7 @@
             </thead>
             <tbody>
             <%
-                ArrayList<Section> sections = (ArrayList<Section>) session.getAttribute("sections_list");
+                ArrayList<Section> sections = (ArrayList<Section>) request.getAttribute("sections_list");
                 for(int i = 0; sections != null && i < sections.size() ; ++i){
                     out.println("<tr>");
                     out.println("<td>"+ sections.get(i).getId()+"</td>");

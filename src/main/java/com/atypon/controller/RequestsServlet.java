@@ -1,6 +1,7 @@
 package com.atypon.controller;
 
 import com.atypon.model.CoursesDAO;
+import com.atypon.model.SectionsDAO;
 import com.atypon.model.UsersDAO;
 import com.atypon.utility.Course;
 import com.atypon.utility.Section;
@@ -84,9 +85,8 @@ public class RequestsServlet extends HttpServlet {
                 request.getRequestDispatcher("/add_course.page").forward(request,response);
             }
         }else if(action.equals("/sections.page")){
-            ArrayList<Section> courses = null;
-            HttpSession session = request.getSession();
-            session.setAttribute("sections_list",courses);
+            ArrayList<Section> sections = SectionsDAO.getInstance().getSections();
+            request.setAttribute("sections_list",sections);
             RequestDispatcher rd = request.getRequestDispatcher("sections.jsp");
             rd.forward(request,response);
         }
