@@ -30,6 +30,7 @@ public class URLFilter implements Filter {
         }
         allowedActions.get(0).add("/users.page");
         allowedActions.get(0).add("/courses.page");
+        allowedActions.get(0).add("/add_user.page");
 
     }
 

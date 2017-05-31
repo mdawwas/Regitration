@@ -31,6 +31,7 @@
                             out.println("<li><a href = \"/users.page\" > Users </a ></li >");
                             out.println("<li ><a href = \"/courses.page\" > Courses </a ></li >");
                             out.println("<li ><a href = \"#\" > Sections </a ></li >");
+                            out.println("<li><a href=\"/add_user.page\">Add user</a> </li>");
                         }
                     }
                 %>

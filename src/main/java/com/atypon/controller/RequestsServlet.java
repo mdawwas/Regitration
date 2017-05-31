@@ -54,6 +54,9 @@ public class RequestsServlet extends HttpServlet {
             session.setAttribute("courses_list",courses);
             RequestDispatcher rd = request.getRequestDispatcher("courses.jsp");
             rd.forward(request,response);
+        }else if(action.equals("/add_user.page")){
+            RequestDispatcher rd = request.getRequestDispatcher("Add_user.jsp");
+            rd.forward(request,response);
         }
     }
 }

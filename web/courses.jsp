@@ -47,6 +47,7 @@
                 <li><a href="/users.page">Users</a></li>
                 <li class="active"><a href="/courses.page">Courses</a></li>
                 <li><a href="#">Sections</a></li>
+                <li><a href="/add_user.page">Add user</a> </li>
             </ul>
         </div>
     </nav>
