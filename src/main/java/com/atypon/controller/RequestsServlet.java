@@ -66,11 +66,23 @@ public class RequestsServlet extends HttpServlet {
             if(done){
                 request.setAttribute("Message","The user " + username + "Added successfully");
                 response.sendRedirect("/users.page");
-                System.out.println("done");
             }else{
                 request.setAttribute("Message","Something went error : The user " + username + "already exist or there is an internal error");
                 request.getRequestDispatcher("/add_user.page").forward(request,response);
-                System.out.println("error");
+            }
+        }else if(action.equals("/add_course.page")){
+            RequestDispatcher rd = request.getRequestDispatcher("Add_course.jsp");
+            rd.forward(request,response);
+        }else if(action.equals("/courses.add")){
+            String courseName = request.getParameter("course_name");
+            String courseDescription = request.getParameter("course_description");
+            boolean done = CoursesDAO.getInstance().addCourse(courseName,courseDescription);
+            if(done){
+                request.setAttribute("Message","The course " + courseName + "Added successfully");
+                response.sendRedirect("/courses.page");
+            }else{
+                request.setAttribute("Message","Something went error : The course " + courseName + "already exist or there is an internal error");
+                request.getRequestDispatcher("/add_course.page").forward(request,response);
             }
         }
     }

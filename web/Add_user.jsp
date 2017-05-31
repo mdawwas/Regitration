@@ -24,7 +24,8 @@
                 <li><a href="/users.page">Users</a></li>
                 <li><a href="/courses.page">Courses</a></li>
                 <li><a href="#">Sections</a></li>
-                <li class="active"><a href="/add_user.page">Add user</a> </li>
+                <li class="active"><a href="/add_user.page">Add User</a> </li>
+                <li><a href="/add_course.page">Add Course</a> </li>
             </ul>
         </div>
     </nav>
@@ -41,14 +42,14 @@
 
                     <div class="form-group">
                         <input type="text" name="name" class="form-control input-lg" placeholder="Name" tabindex="3" required>
-                    </div>
+                    </div> <br>
                     <div class="form-group">
-                        <input type="text" name="username" class="form-control input-lg" placeholder="Username" tabindex="3">
-                    </div>
+                        <input type="text" name="username" class="form-control input-lg" placeholder="Username" tabindex="3" required>
+                    </div> <br>
 
                     <div class="form-group">
                         <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="3" required>
-                    </div>
+                    </div> <br>
 
                     <div class="container">
                         User type : &nbsp; &nbsp;
@@ -61,8 +62,8 @@
                         <label class="radio-inline">
                             <input type="radio" name="type" value = "2">Student
                         </label>
-                    </div>
-                    <br>
+                    </div> <br>
+
                     <hr class="colorgraph"><br>
                     <div class="row">
                         <div class="col-xs-12 col-md-6"><input type="submit" value="Add user" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>

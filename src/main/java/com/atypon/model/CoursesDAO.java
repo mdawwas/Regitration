@@ -23,13 +23,19 @@ public class CoursesDAO {
         return instance;
     }
 
-    public void addCourse(String courseName , String courseDescription) throws SQLException {
-        String sqlQuery = "insert into Courses (course_Name , courseDescription) VALUES (?,?)";
+    public boolean addCourse(String courseName , String courseDescription) {
+        String sqlQuery = "insert into Courses (course_name , course_description) VALUES (?,?)";
         Connection connection = DataSource.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-        preparedStatement.setString(1,courseName);
-        preparedStatement.setString(2,courseDescription);
-        preparedStatement.execute();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setString(1,courseName);
+            preparedStatement.setString(2,courseDescription);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public void deleteCourse(int id) throws SQLException {
