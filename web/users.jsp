@@ -44,7 +44,7 @@
                 <li><a href="/home.page">Home</a></li>
                 <li class="active"><a href="/users.page">Users</a></li>
                 <li><a href="/courses.page">Courses</a></li>
-                <li><a href="#">Sections</a></li>
+                <li><a href="/sections.page">Sections</a></li>
                 <li><a href="/add_user.page">Add user</a> </li>
                 <li><a href="/add_course.page">Add Course</a> </li>
             </ul>
@@ -66,7 +66,7 @@
             </thead>
             <tbody>
                  <%
-                     ArrayList <User> users  = (ArrayList<User>) session.getAttribute("users_list");
+                     ArrayList <User> users  = (ArrayList<User>) request.getAttribute("users_list");
                      for(int i = 0 ; users!= null && i < users.size() ; ++i){
                          out.println("<tr>");
                          out.println("<td>"+users.get(i).getId()+"</td>");

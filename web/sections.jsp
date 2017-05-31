@@ -1,16 +1,15 @@
-<%@ page import="com.atypon.utility.User" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.atypon.utility.Course" %><%--
+<%@ page import="com.atypon.utility.Section" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
-  User: mdawwas
-  Date: 5/30/17
-  Time: 4:29 PM
+  User: Mohammad
+  Date: 01/06/2017
+  Time: 01:16 ص
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Courses</title>
+    <title>Sections</title>
     <script language="JavaScript" src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
@@ -21,22 +20,6 @@
     <link rel="stylesheet" href="all_in.css" type="text/css">
 </head>
 <body>
-    <%--<script>--%>
-        <%--<%--%>
-            <%--if(session.isNew()){--%>
-                <%--out.println("window.location.replace(\"/HomePage.jsp\");");--%>
-            <%--}else{--%>
-                <%--User user = (User) session.getAttribute("user");--%>
-                <%--if(user == null){--%>
-                    <%--response.sendRedirect("index.jsp");--%>
-                <%--}else if( user.getType() != 0){--%>
-                    <%--out.println("alert(\"You cant access this page\");");--%>
-                    <%--out.println("window.location.replace(\"/HomePage.jsp\");");--%>
-                <%--}--%>
-            <%--}--%>
-        <%--%>--%>
-
-    <%--</script>--%>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -45,8 +28,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="/home.page">Home</a></li>
                 <li><a href="/users.page">Users</a></li>
-                <li class="active"><a href="/courses.page">Courses</a></li>
-                <li><a href="/sections.page">Sections</a></li>
+                <li><a href="/courses.page">Courses</a></li>
+                <li class="active"><a href="/sections.page">Sections</a></li>
                 <li><a href="/add_user.page">Add user</a> </li>
                 <li><a href="/add_course.page">Add Course</a> </li>
             </ul>
@@ -58,20 +41,24 @@
         <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>id</th>
-                <th>Course Name</th>
-                <th>Course Description</th>
+                <th>ID</th>
+                <th>Course ID</th>
+                <th>Teacher ID</th>
+                <th>Location</th>
+                <th>Time</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
             <%
-                ArrayList <Course> courses  = (ArrayList<Course>) request.getAttribute("courses_list");
-                for(int i = 0 ; courses!= null && i < courses.size() ; ++i){
+                ArrayList<Section> sections = (ArrayList<Section>) session.getAttribute("sections_list");
+                for(int i = 0; sections != null && i < sections.size() ; ++i){
                     out.println("<tr>");
-                    out.println("<td>"+courses.get(i).getId()+"</td>");
-                    out.println("<td>"+courses.get(i).getCourseName()+"</td>");
-                    out.println("<td>"+courses.get(i).getCourseDesription()+"</td>");
+                    out.println("<td>"+ sections.get(i).getId()+"</td>");
+                    out.println("<td>"+ sections.get(i).getCourseId()+"</td>");
+                    out.println("<td>"+ sections.get(i).getTeacherId()+"</td>");
+                    out.println("<td>"+ sections.get(i).getLocation()+"</td>");
+                    out.println("<td>"+ sections.get(i).getTime()+"</td>");
                     out.println("<td><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span class=\"glyphicon glyphicon-trash\"></span></button></p></td>");
                     out.println("</tr>");
                 }
@@ -79,5 +66,6 @@
             </tbody>
         </table>
     </div>
+
 </body>
 </html>

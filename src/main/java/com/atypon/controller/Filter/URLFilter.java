@@ -34,6 +34,7 @@ public class URLFilter implements Filter {
         allowedActions.get(0).add("/users.add");
         allowedActions.get(0).add("/add_course.page");
         allowedActions.get(0).add("/courses.add");
+        allowedActions.get(0).add("/sections.page");
 
     }
 

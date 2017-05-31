@@ -3,6 +3,7 @@ package com.atypon.controller;
 import com.atypon.model.CoursesDAO;
 import com.atypon.model.UsersDAO;
 import com.atypon.utility.Course;
+import com.atypon.utility.Section;
 import com.atypon.utility.User;
 
 import javax.servlet.RequestDispatcher;
@@ -44,14 +45,12 @@ public class RequestsServlet extends HttpServlet {
             rd.forward(request,response);
         }else if(action.equals("/users.page")){
             ArrayList<User> users = UsersDAO.getInstance().getUsers();
-            HttpSession session = request.getSession();
-            session.setAttribute("users_list",users);
+            request.setAttribute("users_list",users);
             RequestDispatcher rd = request.getRequestDispatcher("users.jsp");
             rd.forward(request,response);
         }else if(action.equals("/courses.page")){
             ArrayList<Course> courses = CoursesDAO.getInstance().getCourses();
-            HttpSession session = request.getSession();
-            session.setAttribute("courses_list",courses);
+            request.setAttribute("courses_list",courses);
             RequestDispatcher rd = request.getRequestDispatcher("courses.jsp");
             rd.forward(request,response);
         }else if(action.equals("/add_user.page")){
@@ -84,6 +83,12 @@ public class RequestsServlet extends HttpServlet {
                 request.setAttribute("Message","Something went error : The course " + courseName + "already exist or there is an internal error");
                 request.getRequestDispatcher("/add_course.page").forward(request,response);
             }
+        }else if(action.equals("/sections.page")){
+            ArrayList<Section> courses = null;
+            HttpSession session = request.getSession();
+            session.setAttribute("sections_list",courses);
+            RequestDispatcher rd = request.getRequestDispatcher("sections.jsp");
+            rd.forward(request,response);
         }
     }
 }

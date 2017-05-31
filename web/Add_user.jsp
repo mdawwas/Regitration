@@ -23,7 +23,7 @@
                 <li><a href="/home.page">Home</a></li>
                 <li><a href="/users.page">Users</a></li>
                 <li><a href="/courses.page">Courses</a></li>
-                <li><a href="#">Sections</a></li>
+                <li><a href="/sections.page">Sections</a></li>
                 <li class="active"><a href="/add_user.page">Add User</a> </li>
                 <li><a href="/add_course.page">Add Course</a> </li>
             </ul>
