@@ -39,6 +39,9 @@ public class RequestsServlet extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request,response);
             }
 
+        }else if(action.equals("/home.page")){
+            RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");
+            rd.forward(request,response);
         }else if(action.equals("/users.page")){
             ArrayList<User> users = UsersDAO.getInstance().getUsers();
             HttpSession session = request.getSession();

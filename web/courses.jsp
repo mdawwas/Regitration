@@ -21,31 +21,31 @@
     <link rel="stylesheet" href="all_in.css" type="text/css">
 </head>
 <body>
-    <script>
-        <%
-            if(session.isNew()){
-                out.println("window.location.replace(\"/HomePage.jsp\");");
-            }else{
-                User user = (User) session.getAttribute("user");
-                if(user == null){
-                    response.sendRedirect("index.jsp");
-                }else if( user.getType() != 0){
-                    out.println("alert(\"You cant access this page\");");
-                    out.println("window.location.replace(\"/HomePage.jsp\");");
-                }
-            }
-        %>
+    <%--<script>--%>
+        <%--<%--%>
+            <%--if(session.isNew()){--%>
+                <%--out.println("window.location.replace(\"/HomePage.jsp\");");--%>
+            <%--}else{--%>
+                <%--User user = (User) session.getAttribute("user");--%>
+                <%--if(user == null){--%>
+                    <%--response.sendRedirect("index.jsp");--%>
+                <%--}else if( user.getType() != 0){--%>
+                    <%--out.println("alert(\"You cant access this page\");");--%>
+                    <%--out.println("window.location.replace(\"/HomePage.jsp\");");--%>
+                <%--}--%>
+            <%--}--%>
+        <%--%>--%>
 
-    </script>
+    <%--</script>--%>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/HomePage.jsp">Atypon Registeration</a>
+                <a class="navbar-brand" href="/home.page">Atypon Registeration</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="HomePage.jsp">Home</a></li>
-                <li><a href="users.page">Users</a></li>
-                <li class="active"><a href="courses.page">Courses</a></li>
+                <li><a href="/home.page">Home</a></li>
+                <li><a href="/users.page">Users</a></li>
+                <li class="active"><a href="/courses.page">Courses</a></li>
                 <li><a href="#">Sections</a></li>
             </ul>
         </div>

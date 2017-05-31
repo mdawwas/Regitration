@@ -9,13 +9,27 @@
         <servlet-name>requestsServlet</servlet-name>
         <servlet-class>com.atypon.controller.RequestsServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>requestsServlet</servlet-name>
         <url-pattern>/users.page</url-pattern>
         <url-pattern>/login.do</url-pattern>
         <url-pattern>/courses.page</url-pattern>
+        <url-pattern>/home.page</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>URLFilter</filter-name>
+        <filter-class>com.atypon.controller.Filter.URLFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>URLFilter</filter-name>
+        <servlet-name>requestsServlet</servlet-name>
+    </filter-mapping>
+
     <session-config>
-        <session-timeout>1</session-timeout> <!-- in minutes -->
+        <session-timeout>30</session-timeout> <!-- in minutes -->
     </session-config>
+
 </web-app>
