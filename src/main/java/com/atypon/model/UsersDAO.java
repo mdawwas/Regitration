@@ -25,17 +25,22 @@ public class UsersDAO {
         return instance;
     }
 
-    public void addUser(User user) throws SQLException{
-        String sqlQuery = "insert into users (username ,password , name , type ) values( ? , ? ,? ,?)";
+    public boolean addUser(User user) {
+        String sqlQuery = "insert into Users (username ,password , name , type ) values( ? , ? ,? ,?)";
         Connection connection = DataSource.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-        preparedStatement.setString(1, user.getUserName());
-        preparedStatement.setString(2,user.getPassword());
-        preparedStatement.setString(3,user.getName());
-        preparedStatement.setInt(4,user.getType());
-        preparedStatement.execute();
-        DataSource.getInstance().returnConnection(connection);
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getName());
+            preparedStatement.setInt(4, user.getType());
+            preparedStatement.execute();
+            DataSource.getInstance().returnConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public User doLogin(String userName , String password){

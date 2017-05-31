@@ -57,6 +57,21 @@ public class RequestsServlet extends HttpServlet {
         }else if(action.equals("/add_user.page")){
             RequestDispatcher rd = request.getRequestDispatcher("Add_user.jsp");
             rd.forward(request,response);
+        }else if(action.equals("/users.add")){
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String name = request.getParameter("name");
+            int type = Integer.parseInt(request.getParameter("type"));
+            boolean done  = UsersDAO.getInstance().addUser(new User(type,username,password,name));
+            if(done){
+                request.setAttribute("Message","The user " + username + "Added successfully");
+                response.sendRedirect("/users.page");
+                System.out.println("done");
+            }else{
+                request.setAttribute("Message","Something went error : The user " + username + "already exist or there is an internal error");
+                request.getRequestDispatcher("/add_user.page").forward(request,response);
+                System.out.println("error");
+            }
         }
     }
 }

@@ -17,6 +17,7 @@
         <url-pattern>/courses.page</url-pattern>
         <url-pattern>/home.page</url-pattern>
         <url-pattern>/add_user.page</url-pattern>
+        <url-pattern>/users.add</url-pattern>
     </servlet-mapping>
 
     <filter>
