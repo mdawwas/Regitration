@@ -26,6 +26,7 @@
                     <li><a href="/sections.page">Sections</a></li>
                     <li><a href="/add_user.page">Add User</a> </li>
                     <li class="active"><a href="/add_course.page">Add Course</a> </li>
+                    <li><a href="/add_section.page">Add Section</a> </li>
                 </ul>
             </div>
         </div>
