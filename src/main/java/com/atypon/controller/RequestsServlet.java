@@ -89,6 +89,27 @@ public class RequestsServlet extends HttpServlet {
             request.setAttribute("sections_list",sections);
             RequestDispatcher rd = request.getRequestDispatcher("sections.jsp");
             rd.forward(request,response);
+        }else if(action.equals("/add_section.page")){
+            ArrayList<Course> courses = CoursesDAO.getInstance().getCourses();
+            request.setAttribute("courses_list",courses);
+            ArrayList<User> teachers = UsersDAO.getInstance().getTeachers();
+            request.setAttribute("teachers_list",teachers);
+            RequestDispatcher rd = request.getRequestDispatcher("Add_section.jsp");
+            rd.forward(request,response);
+        }else if(action.equals("/sections.add")){
+            int teacherId = Integer.parseInt(request.getParameter("teacher"));
+            int courseId =  Integer.parseInt(request.getParameter("course"));
+            String time = request.getParameter("time");
+            boolean done = SectionsDAO.getInstance().addSection(new Section(teacherId,courseId,time));
+            System.out.println(done);
+            if(done){
+                request.setAttribute("Message","The Section Added successfully");
+                response.sendRedirect("/sections.page");
+            }else{
+                request.setAttribute("Message","Something went error : The teacher have another section at the same time or there is an internal error");
+                request.getRequestDispatcher("/add_section.page").forward(request,response);
+            }
+
         }
     }
 }

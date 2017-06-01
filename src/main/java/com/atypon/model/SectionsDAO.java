@@ -24,7 +24,7 @@ public class SectionsDAO {
 
     public ArrayList<Section> getSections(){
         ArrayList<Section> sections = new ArrayList<>();
-        String sqlQuery = "Select * from sections";
+        String sqlQuery = "Select * from Sections";
         Connection connection = DataSource.getInstance().getConnection();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -33,9 +33,8 @@ public class SectionsDAO {
                 int id = resultSet.getInt("id");
                 int courseId = resultSet.getInt("course_id");
                 int teacherId = resultSet.getInt("teacher_id");
-                String location = resultSet.getString("location");
                 String time = resultSet.getString("time");
-                sections.add(new Section(id,teacherId,courseId,location,time));
+                sections.add(new Section(id,teacherId,courseId,time));
             }
             DataSource.getInstance().returnConnection(connection);
         } catch (SQLException e) {
@@ -43,5 +42,21 @@ public class SectionsDAO {
             return null;
         }
         return sections;
+    }
+
+    public boolean addSection(Section section){
+        String sqlQuery = "insert into Sections (teacher_id,course_id,time) values(?,?,?)";
+        Connection connection = DataSource.getInstance().getConnection();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,section.getTeacherId());
+            preparedStatement.setInt(2,section.getCourseId());
+            preparedStatement.setString(3,section.getTime());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

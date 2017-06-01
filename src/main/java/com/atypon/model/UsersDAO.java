@@ -91,4 +91,27 @@ public class UsersDAO {
         }
         return usersList;
     }
+
+    public ArrayList<User> getTeachers() {
+        ArrayList <User> usersList = new ArrayList<>();
+        String sqlQuery = "select * from Users where type = ?";
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,1);
+            ResultSet  resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                User user = new User(id,name);
+                usersList.add(user);
+            }
+            DataSource.getInstance().returnConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usersList;
+    }
+
+
 }

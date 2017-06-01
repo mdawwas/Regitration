@@ -21,7 +21,8 @@
         <url-pattern>/courses.add</url-pattern>
         <url-pattern>/add_course.page</url-pattern>
         <url-pattern>/sections.page</url-pattern>
-
+        <url-pattern>/add_section.page</url-pattern>
+        <url-pattern>/sections.add</url-pattern>
     </servlet-mapping>
 
     <filter>

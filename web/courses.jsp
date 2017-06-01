@@ -55,6 +55,7 @@
 
     <div class="table-div">
         <img src="https://www.trendmd.com/assets/new_landing/customers/atypon-38a9c282d1fbb5a5268d91759d9ed6de.png" class="users-img">
+        <br><hr class="colorgraph"><br>
         <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
             <tr>

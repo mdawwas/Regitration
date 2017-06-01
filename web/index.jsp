@@ -19,6 +19,10 @@
         if(request.getAttribute("error")!=null){
             out.println("alert(\"Wrong username or password\");");
         }
+        if(session.getAttribute("user")!=null){
+            RequestDispatcher rd = request.getRequestDispatcher("/home.page");
+            rd.forward(request,response);
+        }
       %>
     </script>
     <div class="container">

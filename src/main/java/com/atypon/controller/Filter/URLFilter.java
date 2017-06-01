@@ -35,6 +35,8 @@ public class URLFilter implements Filter {
         allowedActions.get(0).add("/add_course.page");
         allowedActions.get(0).add("/courses.add");
         allowedActions.get(0).add("/sections.page");
+        allowedActions.get(0).add("/add_section.page");
+        allowedActions.get(0).add("/sections.add");
 
     }
 
@@ -57,8 +59,6 @@ public class URLFilter implements Filter {
             file.println("at : " + time + " user " + request.getParameter("username") + " did action : " + action);
             file.flush();
             filterChain.doFilter(servletRequest,servletResponse);
-        } else if(action.equals("/index.jsp")){
-            response.sendRedirect("/Home.page");
         } else {
             int userType = user.getType();
             if(allowedActions.get(userType).contains(action)){

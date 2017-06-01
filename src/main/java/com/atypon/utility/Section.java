@@ -7,21 +7,18 @@ public class Section {
     private int id;
     private int teacherId;
     private int courseId;
-    private String location;
     private String time;
 
-    public Section(int id, int teacherId, int courseId, String location, String time) {
+    public Section(int id, int teacherId, int courseId, String time) {
         this.id = id;
         this.teacherId = teacherId;
         this.courseId = courseId;
-        this.location = location;
         this.time = time;
     }
 
-    public Section(int teacherId, int courseId, String location, String time) {
+    public Section(int teacherId, int courseId, String time) {
         this.teacherId = teacherId;
         this.courseId = courseId;
-        this.location = location;
         this.time = time;
     }
 
@@ -35,10 +32,6 @@ public class Section {
 
     public int getCourseId() {
         return courseId;
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     public String getTime() {
