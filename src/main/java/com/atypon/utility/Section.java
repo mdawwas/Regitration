@@ -8,6 +8,15 @@ public class Section {
     private int teacherId;
     private int courseId;
     private String time;
+    private String courseName;
+
+    public Section(int id, int teacherId, int courseId, String time, String courseName) {
+        this.id = id;
+        this.teacherId = teacherId;
+        this.courseId = courseId;
+        this.time = time;
+        this.courseName = courseName;
+    }
 
     public Section(int id, int teacherId, int courseId, String time) {
         this.id = id;
@@ -38,5 +47,8 @@ public class Section {
         return time;
     }
 
+    public String getCourseName() {
+        return courseName;
+    }
 
 }

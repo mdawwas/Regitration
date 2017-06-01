@@ -45,6 +45,7 @@
             <tr>
                 <th>ID</th>
                 <th>Course ID</th>
+                <th>Course Name</th>
                 <th>Teacher ID</th>
                 <th>Time</th>
                 <th>Delete</th>
@@ -57,6 +58,7 @@
                     out.println("<tr>");
                     out.println("<td>"+ sections.get(i).getId()+"</td>");
                     out.println("<td>"+ sections.get(i).getCourseId()+"</td>");
+                    out.println("<td>"+ sections.get(i).getCourseName()+"</td>");
                     out.println("<td>"+ sections.get(i).getTeacherId()+"</td>");
                     out.println("<td>"+ sections.get(i).getTime()+"</td>");
                     out.println("<td><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span class=\"glyphicon glyphicon-trash\"></span></button></p></td>");

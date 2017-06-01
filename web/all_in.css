@@ -23,8 +23,9 @@ body{
     margin-left: 20%
 }
 .add-user-div .users-img{
-    margin-top: 10%;
-    margin-bottom: 4%;
+    margin-top: 7%;
+    margin-bottom: 3%;
+    width:34%
 }
 .pagination>li {
     display: inline;
@@ -87,7 +88,7 @@ td{
 }
 .users-img{
     display: table;
-    margin: 0 auto 8%;
+    margin: 10% auto 0;
     width: 50%;
 }
 

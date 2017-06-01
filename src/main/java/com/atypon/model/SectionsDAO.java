@@ -24,7 +24,7 @@ public class SectionsDAO {
 
     public ArrayList<Section> getSections(){
         ArrayList<Section> sections = new ArrayList<>();
-        String sqlQuery = "Select * from Sections";
+        String sqlQuery = "SELECT sections.id , sections.course_id , sections.teacher_id ,sections.time , courses.course_name FROM sections , courses WHERE courses.id = course_id";
         Connection connection = DataSource.getInstance().getConnection();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -34,7 +34,8 @@ public class SectionsDAO {
                 int courseId = resultSet.getInt("course_id");
                 int teacherId = resultSet.getInt("teacher_id");
                 String time = resultSet.getString("time");
-                sections.add(new Section(id,teacherId,courseId,time));
+                String courseName = resultSet.getString("course_name");
+                sections.add(new Section(id,teacherId,courseId,time,courseName));
             }
             DataSource.getInstance().returnConnection(connection);
         } catch (SQLException e) {
