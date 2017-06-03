@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.atypon.utility.User" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
@@ -67,19 +68,17 @@
                 </tr>
             </thead>
             <tbody>
-                 <%
-                     ArrayList <User> users  = (ArrayList<User>) request.getAttribute("users_list");
-                     for(int i = 0 ; users!= null && i < users.size() ; ++i){
-                         out.println("<tr>");
-                         out.println("<td>"+users.get(i).getId()+"</td>");
-                         out.println("<td>"+users.get(i).getName()+"</td>");
-                         out.println("<td>"+users.get(i).getUserName()+"</td>");
-                         out.println("<td>"+users.get(i).getPassword()+"</td>");
-                         out.println("<td>"+users.get(i).getType()+"</td>");
-                         out.println("<td><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span class=\"glyphicon glyphicon-trash\"></span></button></p></td>");
-                         out.println("</tr>");
-                     }
-                 %>
+                <c:forEach items = "${requestScope.users_list}" var = "users">
+                    <tr>
+                        <td>${users.id}</td>
+                        <td>${users.name}</td>
+                        <td>${users.userName}</td>
+                        <td>${users.password}</td>
+                        <td>${users.type}</td>
+                        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                    </tr>
+
+                </c:forEach>
             </tbody>
         </table>
     </div>

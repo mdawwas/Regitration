@@ -104,7 +104,8 @@ public class RequestsServlet extends HttpServlet {
             System.out.println(done);
             if(done){
                 request.setAttribute("Message","The Section Added successfully");
-                response.sendRedirect("/sections.page");
+//                response.sendRedirect("/sections.page");
+                request.getRequestDispatcher("/sections.page").forward(request,response);
             }else{
                 request.setAttribute("Message","Something went error : The teacher have another section at the same time or there is an internal error");
                 request.getRequestDispatcher("/add_section.page").forward(request,response);

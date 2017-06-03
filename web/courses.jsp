@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.atypon.utility.User" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.atypon.utility.Course" %><%--
@@ -67,17 +68,16 @@
             </tr>
             </thead>
             <tbody>
-            <%
-                ArrayList <Course> courses  = (ArrayList<Course>) request.getAttribute("courses_list");
-                for(int i = 0 ; courses!= null && i < courses.size() ; ++i){
-                    out.println("<tr>");
-                    out.println("<td>"+courses.get(i).getId()+"</td>");
-                    out.println("<td>"+courses.get(i).getCourseName()+"</td>");
-                    out.println("<td>"+courses.get(i).getCourseDesription()+"</td>");
-                    out.println("<td><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span class=\"glyphicon glyphicon-trash\"></span></button></p></td>");
-                    out.println("</tr>");
-                }
-            %>
+
+            <c:forEach items="${requestScope.courses_list}" var="courses">
+                <tr>
+                    <td>${courses.id}</td>
+                    <td>${courses.courseName}</td>
+                    <td>${courses.courseDescription}</td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                </tr>
+
+            </c:forEach>
             </tbody>
         </table>
     </div>

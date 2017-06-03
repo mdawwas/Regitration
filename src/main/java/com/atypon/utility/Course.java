@@ -6,12 +6,12 @@ package com.atypon.utility;
 public class Course {
     int id;
     String courseName;
-    String courseDesription;
+    String courseDescription;
 
-    public Course(int id, String courseName, String courseDesription) {
+    public Course(int id, String courseName, String courseDescription) {
         this.id = id;
         this.courseName = courseName;
-        this.courseDesription = courseDesription;
+        this.courseDescription = courseDescription;
     }
 
 
@@ -23,7 +23,7 @@ public class Course {
         return courseName;
     }
 
-    public String getCourseDesription() {
-        return courseDesription;
+    public String getCourseDescription() {
+        return courseDescription;
     }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.atypon.utility.Section" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
@@ -20,6 +21,13 @@
     <link rel="stylesheet" href="all_in.css" type="text/css">
 </head>
 <body>
+    <script>
+    <%
+        String msg = (String) request.getAttribute("Message");
+        if(msg != null)
+            out.println("alert(" + msg + ")");
+    %>
+    </script>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -48,23 +56,24 @@
                 <th>Course Name</th>
                 <th>Teacher ID</th>
                 <th>Time</th>
+                <th>Edit Section Students</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <%
-                ArrayList<Section> sections = (ArrayList<Section>) request.getAttribute("sections_list");
-                for(int i = 0; sections != null && i < sections.size() ; ++i){
-                    out.println("<tr>");
-                    out.println("<td>"+ sections.get(i).getId()+"</td>");
-                    out.println("<td>"+ sections.get(i).getCourseId()+"</td>");
-                    out.println("<td>"+ sections.get(i).getCourseName()+"</td>");
-                    out.println("<td>"+ sections.get(i).getTeacherId()+"</td>");
-                    out.println("<td>"+ sections.get(i).getTime()+"</td>");
-                    out.println("<td><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span class=\"glyphicon glyphicon-trash\"></span></button></p></td>");
-                    out.println("</tr>");
-                }
-            %>
+            <c:forEach items="${requestScope.sections_list}" var="sections">
+                <tr>
+                    <td>${sections.id}</td>
+                    <td>${sections.courseId}</td>
+                    <td>${sections.courseName}</td>
+                    <td>${sections.teacherId}</td>
+                    <td>${sections.time}</td>
+                    <td>asd</td>
+                    <td>fafsaf</td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

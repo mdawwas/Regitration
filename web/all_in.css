@@ -25,7 +25,7 @@ body{
 .add-user-div .users-img{
     margin-top: 7%;
     margin-bottom: 3%;
-    width:34%
+    width:40%
 }
 .pagination>li {
     display: inline;
@@ -80,7 +80,7 @@ iframe
 }
 
 .table-div{
-    width: 40%;
+    width: 50%;
     margin: 2% auto 5%;
 }
 td{
