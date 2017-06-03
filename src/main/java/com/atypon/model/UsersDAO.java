@@ -113,5 +113,39 @@ public class UsersDAO {
         return usersList;
     }
 
+    public ArrayList<User> getNotInSectionStudents(int sectionId){
+        ArrayList <User> students = new ArrayList<>();
+        String sqlQuery = "select id,name from users where id not in (select student_id from section_students where section_id not in(select id from sections where course_id not in(select course_id from sections where id = ?)) ) AND type = 2";
+        Connection connection = DataSource.getInstance().getConnection();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,sectionId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int studentId = resultSet.getInt("id");
+                String studentName = resultSet.getString("name");
+                students.add(new User(studentId,studentName));
+            }
+            DataSource.getInstance().returnConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    public void deleteUser(int id){
+        String sqlQuery = "delete from users where id = ?";
+        Connection connection = DataSource.getInstance().getConnection();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+            DataSource.getInstance().returnConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 }

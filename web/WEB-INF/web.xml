@@ -23,6 +23,14 @@
         <url-pattern>/sections.page</url-pattern>
         <url-pattern>/add_section.page</url-pattern>
         <url-pattern>/sections.add</url-pattern>
+        <url-pattern>/mysections.page</url-pattern>
+        <url-pattern>/courses.delete</url-pattern>
+        <url-pattern>/sections.delete</url-pattern>
+        <url-pattern>/edit.section</url-pattern>
+        <url-pattern>/section.students.add</url-pattern>
+        <url-pattern>/user.delete</url-pattern>
+        <url-pattern>/section.student.delete</url-pattern>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
 
     <filter>

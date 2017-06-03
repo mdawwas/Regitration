@@ -38,12 +38,17 @@ public class CoursesDAO {
         return true;
     }
 
-    public void deleteCourse(int id) throws SQLException {
+    public void deleteCourse(int id){
         String sqlQuery = "delete from Courses where id = ?";
-        Connection connection = null;
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-        preparedStatement.setInt(1,id);
-        preparedStatement.execute();
+        Connection connection = DataSource.getInstance().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+            DataSource.getInstance().returnConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Course> getCourses() {

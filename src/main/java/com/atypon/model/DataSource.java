@@ -45,7 +45,6 @@ public class DataSource {
         while (connections.isEmpty()) {
             System.out.println("waiting for a connection");
             continue;
-
         }
         return connections.remove(connections.size()-1);
     }

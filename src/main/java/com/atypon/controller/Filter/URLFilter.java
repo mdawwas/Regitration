@@ -27,6 +27,7 @@ public class URLFilter implements Filter {
         for(int i = 0 ; i < 3 ; ++i ) {
             allowedActions.add(new ArrayList<String>());
             allowedActions.get(i).add("/home.page");
+            allowedActions.get(i).add("/Logout");
         }
         allowedActions.get(0).add("/users.page");
         allowedActions.get(0).add("/courses.page");
@@ -37,6 +38,13 @@ public class URLFilter implements Filter {
         allowedActions.get(0).add("/sections.page");
         allowedActions.get(0).add("/add_section.page");
         allowedActions.get(0).add("/sections.add");
+        allowedActions.get(0).add("/courses.delete");
+        allowedActions.get(0).add("/sections.delete");
+        allowedActions.get(0).add("/edit.section");
+        allowedActions.get(0).add("/section.students.add");
+        allowedActions.get(0).add("/user.delete");
+        allowedActions.get(0).add("/section.student.delete");
+        allowedActions.get(2).add("/mysections.page");
 
     }
 

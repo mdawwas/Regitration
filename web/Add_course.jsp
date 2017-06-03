@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Add Course</title>
+    <link rel="shortcut icon" href="https://www.atypon.com/wp-content/themes/atypon/assets/favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="all_in.css">
 </head>
@@ -27,6 +28,9 @@
                     <li><a href="/add_user.page">Add User</a> </li>
                     <li class="active"><a href="/add_course.page">Add Course</a> </li>
                     <li><a href="/add_section.page">Add Section</a> </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/Logout"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
                 </ul>
             </div>
         </div>

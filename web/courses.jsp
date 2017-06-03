@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>Courses</title>
+    <link rel="shortcut icon" href="https://www.atypon.com/wp-content/themes/atypon/assets/favicon.ico">
     <script language="JavaScript" src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
@@ -22,22 +23,7 @@
     <link rel="stylesheet" href="all_in.css" type="text/css">
 </head>
 <body>
-    <%--<script>--%>
-        <%--<%--%>
-            <%--if(session.isNew()){--%>
-                <%--out.println("window.location.replace(\"/HomePage.jsp\");");--%>
-            <%--}else{--%>
-                <%--User user = (User) session.getAttribute("user");--%>
-                <%--if(user == null){--%>
-                    <%--response.sendRedirect("index.jsp");--%>
-                <%--}else if( user.getType() != 0){--%>
-                    <%--out.println("alert(\"You cant access this page\");");--%>
-                    <%--out.println("window.location.replace(\"/HomePage.jsp\");");--%>
-                <%--}--%>
-            <%--}--%>
-        <%--%>--%>
 
-    <%--</script>--%>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -51,6 +37,9 @@
                 <li><a href="/add_user.page">Add user</a> </li>
                 <li><a href="/add_course.page">Add Course</a> </li>
                 <li><a href="/add_section.page">Add Section</a> </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/Logout"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
             </ul>
         </div>
     </nav>
@@ -74,7 +63,7 @@
                     <td>${courses.id}</td>
                     <td>${courses.courseName}</td>
                     <td>${courses.courseDescription}</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button onclick="window.location='/courses.delete?id=${courses.id}' " class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                 </tr>
 
             </c:forEach>

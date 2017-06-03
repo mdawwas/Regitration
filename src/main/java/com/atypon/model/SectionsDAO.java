@@ -54,10 +54,24 @@ public class SectionsDAO {
             preparedStatement.setInt(2,section.getCourseId());
             preparedStatement.setString(3,section.getTime());
             preparedStatement.execute();
+            DataSource.getInstance().returnConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
         return true;
+    }
+
+    public void deleteSection(int id){
+        String sqlQuery = "delete from Sections where id = ?";
+        Connection connection = DataSource.getInstance().getConnection();
+        try{
+            PreparedStatement preparedStatement= connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+            DataSource.getInstance().returnConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

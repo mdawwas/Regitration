@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.atypon.utility.Course" %>
 <%@ page import="com.atypon.utility.User" %><%--
@@ -11,7 +12,7 @@
 <html>
 <head>
     <title>Add Section</title>
-
+    <link rel="shortcut icon" href="https://www.atypon.com/wp-content/themes/atypon/assets/favicon.ico">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->
@@ -25,10 +26,6 @@
     <link rel="stylesheet" type="text/css" href="all_in.css">
 </head>
 <body>
-    <%
-        ArrayList <Course> courses = (ArrayList<Course>) request.getAttribute("courses_list");
-        ArrayList <User> teachers = (ArrayList<User>) request.getAttribute("teachers_list");
-    %>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -43,7 +40,9 @@
                 <li><a href="/add_course.page">Add Course</a> </li>
                 <li class="active"><a href="/add_section.page">Add Section</a> </li>
             </ul>
-        </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/Logout"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -62,11 +61,9 @@
                         <label class="col-md-3 control-label" for="course">Select Course :</label>
                         <div class="col-md-9">
                             <select id="course" name="course" class="form-control input-md" required>
-                                <%
-                                    for (int i = 0 ; courses != null && i < courses.size() ; ++i){
-                                        out.print("<option value = " + courses.get(i).getId() + " >" + courses.get(i).getCourseName() + "</option>");
-                                    }
-                                %>
+                                <c:forEach items="${requestScope.courses_list}" var = "courses" >
+                                    <option value="${courses.id}">${courses.courseName}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -75,24 +72,20 @@
                         <label class="col-md-3 control-label" for="teacher">Select Teacher :</label>
                         <div class="col-md-9">
                             <select id="teacher" name="teacher" class="form-control input-md" required>
-                                <%
-                                    for (int i = 0 ; teachers != null && i < teachers.size() ; ++i){
-                                        out.print("<option value = " + teachers.get(i).getId() + " >" + teachers.get(i).getName() + "</option>");
-                                    }
-                                %>
+                                <c:forEach items="${requestScope.teachers_list}" var = "teachers" >
+                                    <option value="${teachers.id}">${teachers.name}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
 
-                    <!-- insert time -->
+
                     <div class="row form-group">
                         <label for="time" class="col-sm-3 control-label">Select time : </label>
                         <div class="col-sm-9">
                             <input type="time" id="time" name="time" placeholder="Course time" class="form-control" autofocus required>
                         </div>
                     </div>
-                    <!-- end insert time -->
-
                     <hr class="colorgraph"><br>
                     <div class="row">
                         <div class="col-xs-12 col-md-6"><input type="submit" value="Add Section" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>

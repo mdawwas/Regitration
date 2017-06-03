@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Sections</title>
+    <link rel="shortcut icon" href="https://www.atypon.com/wp-content/themes/atypon/assets/favicon.ico">
     <script language="JavaScript" src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
@@ -21,13 +22,6 @@
     <link rel="stylesheet" href="all_in.css" type="text/css">
 </head>
 <body>
-    <script>
-    <%
-        String msg = (String) request.getAttribute("Message");
-        if(msg != null)
-            out.println("alert(" + msg + ")");
-    %>
-    </script>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -41,6 +35,9 @@
                 <li><a href="/add_user.page">Add user</a> </li>
                 <li><a href="/add_course.page">Add Course</a> </li>
                 <li><a href="/add_section.page">Add Section</a> </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/Logout"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
             </ul>
         </div>
     </nav>
@@ -61,19 +58,17 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${requestScope.sections_list}" var="sections">
-                <tr>
-                    <td>${sections.id}</td>
-                    <td>${sections.courseId}</td>
-                    <td>${sections.courseName}</td>
-                    <td>${sections.teacherId}</td>
-                    <td>${sections.time}</td>
-                    <td>asd</td>
-                    <td>fafsaf</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                </tr>
-            </c:forEach>
+                <c:forEach items="${requestScope.sections_list}" var="sections">
+                    <tr>
+                        <td>${sections.id}</td>
+                        <td>${sections.courseId}</td>
+                        <td>${sections.courseName}</td>
+                        <td>${sections.teacherId}</td>
+                        <td>${sections.time}</td>
+                        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button onclick="window.location='/edit.section?id=${sections.id}' " class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button onclick="window.location='/sections.delete?id=${sections.id}'" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>

@@ -1,10 +1,9 @@
 package com.atypon.controller;
 
-import com.atypon.model.CoursesDAO;
-import com.atypon.model.SectionsDAO;
-import com.atypon.model.UsersDAO;
+import com.atypon.model.*;
 import com.atypon.utility.Course;
 import com.atypon.utility.Section;
+import com.atypon.utility.StudentSection;
 import com.atypon.utility.User;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +13,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 /**
  * Created by mdawwas on 5/29/17.
@@ -29,15 +29,15 @@ public class RequestsServlet extends HttpServlet {
 
     protected void processResquests( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
+        HttpSession session = request.getSession();
         if(action.equals("/login.do")){
             User user = UsersDAO.getInstance().doLogin(request.getParameter("username"),request.getParameter("password"));
-            HttpSession session = request.getSession();
+
             if(user!=null){
                 session.setAttribute("user",user);
-                RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");
-                rd.forward(request,response);
+                response.sendRedirect("/home.page");
             }else{
-                request.setAttribute("error","Error !");
+                request.setAttribute("message","Error !");
                 request.getRequestDispatcher("index.jsp").forward(request,response);
             }
 
@@ -104,13 +104,49 @@ public class RequestsServlet extends HttpServlet {
             System.out.println(done);
             if(done){
                 request.setAttribute("Message","The Section Added successfully");
-//                response.sendRedirect("/sections.page");
                 request.getRequestDispatcher("/sections.page").forward(request,response);
             }else{
                 request.setAttribute("Message","Something went error : The teacher have another section at the same time or there is an internal error");
                 request.getRequestDispatcher("/add_section.page").forward(request,response);
             }
-
+        }else if(action.equals("/mysections.page")){
+            int studentId = ((User)session.getAttribute("user")).getId();
+            ArrayList <StudentSection> sections = StudentViewDAO.getInstance().getStudentSections(studentId);
+            request.setAttribute("sections_list",sections);
+            request.getRequestDispatcher("StudentSections.jsp").forward(request,response);
+        }else if(action.equals("/courses.delete")){
+            int id = Integer.parseInt(request.getParameter("id"));
+            CoursesDAO.getInstance().deleteCourse(id);
+            response.sendRedirect("/courses.page");
+        }else if(action.equals("/sections.delete")){
+            int id = Integer.parseInt(request.getParameter("id"));
+            SectionsDAO.getInstance().deleteSection(id);
+            response.sendRedirect("/sections.page");
+        }else if(action.equals("/edit.section")){
+            int secId = Integer.parseInt(request.getParameter("id"));
+            ArrayList <User> sectionStudents = SectionStudentsDAO.getInstance().getSectionStudents(secId);
+            request.setAttribute("section_students_list",sectionStudents);
+            ArrayList<User> notInSectionStudent = UsersDAO.getInstance().getNotInSectionStudents(secId);
+            request.setAttribute("students_list",notInSectionStudent);
+            request.getRequestDispatcher("EditSectionStudents.jsp").forward(request,response);
+        }else if(action.equals("/section.students.add")){
+            int studentId = Integer.parseInt(request.getParameter("student"));
+            int sectionId = Integer.parseInt(request.getParameter("sectionId"));
+            System.out.println(studentId + " " + sectionId);
+            SectionStudentsDAO.getInstance().addSectionStudent(sectionId,studentId);
+            response.sendRedirect("/edit.section?id=" + sectionId);
+        }else if(action.equals("/user.delete")){
+            int userId = Integer.parseInt(request.getParameter("id"));
+            UsersDAO.getInstance().deleteUser(userId);
+            response.sendRedirect("/users.page");
+        }else if(action.equals("/section.student.delete")){
+            int studentId = Integer.parseInt(request.getParameter("id"));
+            int sectionId = Integer.parseInt(request.getParameter("sec"));
+            SectionStudentsDAO.getInstance().deletStudentFromSection(studentId,sectionId);
+            response.sendRedirect("/edit.section?id=" + sectionId);
+        }else if(action.equals("/Logout")){
+            session.invalidate();
+            response.sendRedirect("index.jsp");
         }
     }
 }
