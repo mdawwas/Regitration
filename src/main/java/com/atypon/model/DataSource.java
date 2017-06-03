@@ -43,7 +43,7 @@ public class DataSource {
 
     public Connection getConnection(){
         while (connections.isEmpty()) {
-            synchronized (getInstance()){
+            synchronized (lock){
                 try {
                     wait();
                 } catch (InterruptedException e) {
@@ -56,7 +56,7 @@ public class DataSource {
 
     public void returnConnection(Connection connection){
         connections.add(connection);
-        synchronized (getInstance()){
+        synchronized (lock){
             notifyAll();
         }
     }

@@ -14,12 +14,17 @@ import java.util.ArrayList;
 public class CoursesDAO {
 
     private static CoursesDAO instance;
-
+    private static final Object lock = new Object();
     private CoursesDAO(){}
 
     public static CoursesDAO getInstance(){
-        if(instance == null)
-            instance = new CoursesDAO();
+        if(instance == null) {
+            synchronized (lock) {
+                if(instance == null) {
+                    instance = new CoursesDAO();
+                }
+            }
+        }
         return instance;
     }
 

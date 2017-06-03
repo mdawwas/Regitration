@@ -14,14 +14,20 @@ import java.util.ArrayList;
 public class UsersDAO {
 
     private static UsersDAO instance;
+    private static final Object lock = new Object();
 
     private UsersDAO(){
 
     }
 
     public static UsersDAO getInstance(){
-        if(instance == null)
-            instance = new UsersDAO();
+        if(instance == null) {
+            synchronized (lock) {
+                if(instance == null) {
+                    instance = new UsersDAO();
+                }
+            }
+        }
         return instance;
     }
 

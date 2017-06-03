@@ -14,11 +14,18 @@ import java.util.ArrayList;
 public class StudentViewDAO {
 
     private static StudentViewDAO instance;
+    private static final Object lock = new Object();
+
     private StudentViewDAO(){}
 
     public static StudentViewDAO getInstance(){
-        if(instance == null)
-            instance = new StudentViewDAO();
+        if(instance == null) {
+            synchronized (lock) {
+                if(instance == null) {
+                    instance = new StudentViewDAO();
+                }
+            }
+        }
         return instance;
     }
 

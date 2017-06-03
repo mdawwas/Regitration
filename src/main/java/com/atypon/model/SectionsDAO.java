@@ -13,12 +13,18 @@ import java.util.ArrayList;
  */
 public class SectionsDAO {
     private static SectionsDAO instance;
+    private static final Object lock = new Object();
 
     private SectionsDAO(){}
 
     public static SectionsDAO getInstance(){
-        if(instance == null)
-            instance = new SectionsDAO();
+        if(instance == null) {
+            synchronized (lock) {
+                if(instance == null) {
+                    instance = new SectionsDAO();
+                }
+            }
+        }
         return instance;
     }
 
