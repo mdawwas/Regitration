@@ -6,6 +6,7 @@ package com.atypon.utility;
 public class User {
     int id;
     int type;
+    int grade;
     String userName;
     String password;
     String name;
@@ -22,6 +23,12 @@ public class User {
         this.type = type;
         this.userName = userName;
         this.password = password;
+        this.name = name;
+    }
+
+    public User(int id, int grade, String name) {
+        this.id = id;
+        this.grade = grade;
         this.name = name;
     }
 
@@ -48,5 +55,9 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public int getGrade() {
+        return grade;
     }
 }

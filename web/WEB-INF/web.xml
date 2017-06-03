@@ -30,6 +30,9 @@
         <url-pattern>/section.students.add</url-pattern>
         <url-pattern>/user.delete</url-pattern>
         <url-pattern>/section.student.delete</url-pattern>
+        <url-pattern>/teacher.sections.page</url-pattern>
+        <url-pattern>/section.students</url-pattern>
+        <url-pattern>/editgrade</url-pattern>
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
 

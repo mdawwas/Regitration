@@ -31,6 +31,7 @@ public class CoursesDAO {
             preparedStatement.setString(1,courseName);
             preparedStatement.setString(2,courseDescription);
             preparedStatement.execute();
+            DataSource.getInstance().returnConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

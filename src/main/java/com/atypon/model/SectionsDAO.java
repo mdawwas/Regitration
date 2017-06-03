@@ -74,4 +74,25 @@ public class SectionsDAO {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Section> getTeacherSections(int teacherId){
+        ArrayList <Section> sections = new ArrayList<>();
+        String sqlQuery = "SELECT sections.id , sections.time , courses.course_name FROM sections , courses WHERE courses.id = course_id AND sections.teacher_id = ?";
+        Connection connection = DataSource.getInstance().getConnection();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,teacherId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int sectionId = resultSet.getInt("id");
+                String courseName = resultSet.getString("course_name");
+                String time = resultSet.getString("time");
+                sections.add(new Section(sectionId,time,courseName));
+            }
+            DataSource.getInstance().returnConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sections;
+    }
 }

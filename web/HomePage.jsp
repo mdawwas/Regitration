@@ -39,6 +39,9 @@
                     <c:when test="${sessionScope.user.type == 2}">
                         <li><a href = "/mysections.page" > My Sections </a ></li >
                     </c:when>
+                    <c:otherwise>
+                        <li><a href="/teacher.sections.page">My Sections </a></li>
+                    </c:otherwise>
                 </c:choose>
             </ul>
             <ul class="nav navbar-nav navbar-right">

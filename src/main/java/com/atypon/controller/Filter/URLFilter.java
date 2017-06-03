@@ -44,6 +44,11 @@ public class URLFilter implements Filter {
         allowedActions.get(0).add("/section.students.add");
         allowedActions.get(0).add("/user.delete");
         allowedActions.get(0).add("/section.student.delete");
+
+        allowedActions.get(1).add("/teacher.sections.page");
+        allowedActions.get(1).add("/section.students");
+        allowedActions.get(1).add("/editgrade");
+
         allowedActions.get(2).add("/mysections.page");
 
     }

@@ -18,6 +18,12 @@ public class StudentSection {
         this.time = time;
     }
 
+    public StudentSection(int sectionId, String courseName, String time) {
+        this.sectionId = sectionId;
+        this.courseName = courseName;
+        this.time = time;
+    }
+
     public int getSectionId() {
         return sectionId;
     }

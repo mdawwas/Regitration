@@ -31,6 +31,12 @@ public class Section {
         this.time = time;
     }
 
+    public Section(int id, String time, String courseName) {
+        this.id = id;
+        this.time = time;
+        this.courseName = courseName;
+    }
+
     public int getId() {
         return id;
     }

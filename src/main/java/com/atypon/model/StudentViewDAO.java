@@ -38,6 +38,7 @@ public class StudentViewDAO {
                 String courseName = resultSet.getString("course_name");
                 sections.add(new StudentSection(sectionId,grade,teacherName,courseName,time));
             }
+            DataSource.getInstance().returnConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }

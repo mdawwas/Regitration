@@ -5,6 +5,7 @@ import com.atypon.utility.Course;
 import com.atypon.utility.Section;
 import com.atypon.utility.StudentSection;
 import com.atypon.utility.User;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -142,6 +143,22 @@ public class RequestsServlet extends HttpServlet {
             int sectionId = Integer.parseInt(request.getParameter("sec"));
             SectionStudentsDAO.getInstance().deletStudentFromSection(studentId,sectionId);
             response.sendRedirect("/edit.section?id=" + sectionId);
+        }else if(action.equals("/teacher.sections.page")){
+            int teacherId = ((User)session.getAttribute("user")).getId();
+            ArrayList<Section> sections = SectionsDAO.getInstance().getTeacherSections(teacherId);
+            request.setAttribute("sections_list",sections);
+            request.getRequestDispatcher("TeacherSections.jsp").forward(request,response);
+        }else if(action.equals("/section.students")){
+            int sectionId = Integer.parseInt(request.getParameter("sectionId"));
+            ArrayList<User> students = SectionStudentsDAO.getInstance().getTeacherStudents(sectionId);
+            request.setAttribute("students_list",students);
+            request.getRequestDispatcher("TeacherStudents.jsp").forward(request,response);
+        }else if(action.equals("/editgrade")){
+            int sectionId = Integer.parseInt(request.getParameter("sectionId"));
+            int studentId = Integer.parseInt(request.getParameter("studentId"));
+            int grade = Integer.parseInt(request.getParameter("grade"));
+            System.out.println(sectionId + " " + studentId + " " + grade);
+            SectionStudentsDAO.getInstance().editGrade(sectionId,studentId,grade);
         }else if(action.equals("/Logout")){
             session.invalidate();
             response.sendRedirect("index.jsp");
