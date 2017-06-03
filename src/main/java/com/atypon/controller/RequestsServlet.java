@@ -101,7 +101,6 @@ public class RequestsServlet extends HttpServlet {
             int courseId =  Integer.parseInt(request.getParameter("course"));
             String time = request.getParameter("time");
             boolean done = SectionsDAO.getInstance().addSection(new Section(teacherId,courseId,time));
-            System.out.println(done);
             if(done){
                 request.setAttribute("Message","The Section Added successfully");
                 request.getRequestDispatcher("/sections.page").forward(request,response);
@@ -132,7 +131,6 @@ public class RequestsServlet extends HttpServlet {
         }else if(action.equals("/section.students.add")){
             int studentId = Integer.parseInt(request.getParameter("student"));
             int sectionId = Integer.parseInt(request.getParameter("sectionId"));
-            System.out.println(studentId + " " + sectionId);
             SectionStudentsDAO.getInstance().addSectionStudent(sectionId,studentId);
             response.sendRedirect("/edit.section?id=" + sectionId);
         }else if(action.equals("/user.delete")){
