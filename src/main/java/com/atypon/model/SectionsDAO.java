@@ -52,7 +52,7 @@ public class SectionsDAO {
     }
 
     public boolean addSection(Section section){
-        String sqlQuery = "insert into Sections (teacher_id,course_id,time) values(?,?,?)";
+        String sqlQuery = "insert into sections (teacher_id,course_id,time) values(?,?,?)";
         Connection connection = DataSource.getInstance().getConnection();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -69,7 +69,7 @@ public class SectionsDAO {
     }
 
     public void deleteSection(int id){
-        String sqlQuery = "delete from Sections where id = ?";
+        String sqlQuery = "delete from sections where id = ?";
         Connection connection = DataSource.getInstance().getConnection();
         try{
             PreparedStatement preparedStatement= connection.prepareStatement(sqlQuery);

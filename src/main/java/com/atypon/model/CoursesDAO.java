@@ -29,7 +29,7 @@ public class CoursesDAO {
     }
 
     public boolean addCourse(String courseName , String courseDescription) {
-        String sqlQuery = "insert into Courses (course_name , course_description) VALUES (?,?)";
+        String sqlQuery = "insert into courses (course_name , course_description) VALUES (?,?)";
         Connection connection = DataSource.getInstance().getConnection();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -45,7 +45,7 @@ public class CoursesDAO {
     }
 
     public void deleteCourse(int id){
-        String sqlQuery = "delete from Courses where id = ?";
+        String sqlQuery = "delete from courses where id = ?";
         Connection connection = DataSource.getInstance().getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -59,7 +59,7 @@ public class CoursesDAO {
 
     public ArrayList<Course> getCourses() {
         ArrayList<Course> courses = new ArrayList<>();
-        String sqlQuery = "select * from Courses";
+        String sqlQuery = "select * from courses";
         try {
             Connection connection = DataSource.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);

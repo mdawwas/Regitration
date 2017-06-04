@@ -5,8 +5,6 @@ import com.atypon.utility.Course;
 import com.atypon.utility.Section;
 import com.atypon.utility.StudentSection;
 import com.atypon.utility.User;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

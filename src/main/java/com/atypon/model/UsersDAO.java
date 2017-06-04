@@ -32,7 +32,7 @@ public class UsersDAO {
     }
 
     public boolean addUser(User user) {
-        String sqlQuery = "insert into Users (username ,password , name , type ) values( ? , ? ,? ,?)";
+        String sqlQuery = "insert into users (username ,password , name , type ) values( ? , ? ,? ,?)";
         Connection connection = DataSource.getInstance().getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -50,7 +50,7 @@ public class UsersDAO {
     }
 
     public User doLogin(String userName , String password){
-        String sqlQuery = "Select * from Users where username = ? and password =  ?";
+        String sqlQuery = "Select * from users where username = ? and password =  ?";
         Connection connection = DataSource.getInstance().getConnection();
 
         PreparedStatement preparedStatement = null;
@@ -77,7 +77,7 @@ public class UsersDAO {
 
     public ArrayList<User> getUsers() {
         ArrayList <User> usersList = new ArrayList<>();
-        String sqlQuery = "select * from Users";
+        String sqlQuery = "select * from users";
         try {
             Connection connection = DataSource.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -100,7 +100,7 @@ public class UsersDAO {
 
     public ArrayList<User> getTeachers() {
         ArrayList <User> usersList = new ArrayList<>();
-        String sqlQuery = "select * from Users where type = ?";
+        String sqlQuery = "select * from users where type = ?";
         try {
             Connection connection = DataSource.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
