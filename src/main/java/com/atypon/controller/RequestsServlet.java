@@ -31,15 +31,14 @@ public class RequestsServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if(action.equals("/login.do")){
             User user = UsersDAO.getInstance().doLogin(request.getParameter("username"),request.getParameter("password"));
-
             if(user!=null){
+                request.setAttribute("Message","Welcome " + user.getName());
                 session.setAttribute("user",user);
-                response.sendRedirect("/home.page");
+                request.getRequestDispatcher("/home.page").forward(request,response);
             }else{
-                request.setAttribute("message","Error !");
+                request.setAttribute("Message","Wrong username or password!");
                 request.getRequestDispatcher("index.jsp").forward(request,response);
             }
-
         }else if(action.equals("/home.page")){
             RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");
             rd.forward(request,response);
@@ -64,7 +63,7 @@ public class RequestsServlet extends HttpServlet {
             boolean done  = UsersDAO.getInstance().addUser(new User(type,username,password,name));
             if(done){
                 request.setAttribute("Message","The user " + username + "Added successfully");
-                response.sendRedirect("/users.page");
+                request.getRequestDispatcher("/users.page").forward(request,response);
             }else{
                 request.setAttribute("Message","Something went error : The user " + username + "already exist or there is an internal error");
                 request.getRequestDispatcher("/add_user.page").forward(request,response);
@@ -78,7 +77,7 @@ public class RequestsServlet extends HttpServlet {
             boolean done = CoursesDAO.getInstance().addCourse(courseName,courseDescription);
             if(done){
                 request.setAttribute("Message","The course " + courseName + "Added successfully");
-                response.sendRedirect("/courses.page");
+                request.getRequestDispatcher("/courses.page").forward(request,response);
             }else{
                 request.setAttribute("Message","Something went error : The course " + courseName + "already exist or there is an internal error");
                 request.getRequestDispatcher("/add_course.page").forward(request,response);

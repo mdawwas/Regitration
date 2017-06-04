@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="all_in.css" type="text/css">
 </head>
 <body>
+    <c:if test = "${not empty requestScope.Message}">
+        <script>
+            alert("${requestScope.Message}");
+        </script>
+    </c:if>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">

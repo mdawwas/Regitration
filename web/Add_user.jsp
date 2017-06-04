@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: mdawwas
@@ -14,7 +15,11 @@
     <link type="text/css" rel="stylesheet" href="all_in.css">
 </head>
 <body>
-
+    <c:if test = "${not empty requestScope.Message}">
+        <script>
+            alert("${requestScope.Message}");
+        </script>
+    </c:if>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">

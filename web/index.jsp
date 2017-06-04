@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
-    <%--<c:if test = "${not empty requestScope.message}">--%>
-      <%--<script type="javascript">--%>
-        <%--alert(${requestScope.error});--%>
-      <%--</script>--%>
-    <%--</c:if>--%>
+    <c:if test = "${not empty requestScope.Message}">
+      <script>
+        alert("${requestScope.Message}");
+      </script>
+    </c:if>
     <c:if test = "${not empty sessionScope.user}">
       <c:redirect url = "/home.page"/>
     </c:if>
@@ -39,5 +39,7 @@
       </div>
 
     </div>
+
+
   </body>
 </html>
