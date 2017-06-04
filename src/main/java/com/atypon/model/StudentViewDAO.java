@@ -31,7 +31,7 @@ public class StudentViewDAO {
 
     public ArrayList getStudentSections(int studentId){
         ArrayList<StudentSection> sections = new ArrayList<>();
-        String sqlQuery = "SELECT course_name , name as teacher ,time ,grade ,section_id FROM Student_view WHERE student_id = ?";
+        String sqlQuery = "SELECT course_name , name as teacher ,time ,grade ,section_id FROM student_view WHERE student_id = ?";
         Connection connection = DataSource.getInstance().getConnection();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
