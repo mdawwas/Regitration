@@ -9,7 +9,9 @@ function doIt(secId,stId) {
     var newGrade = prompt('Enter the new mark');
     if(newGrade === "" || isNaN(newGrade))
         alert("You should enter a number");
-    else {
+    else if(newGrade > 100 || newGrade < 0)
+        alert("Enter a grade from 0-100")
+    else{
         $.ajax({
             type: 'POST',
             url: "/editgrade",
